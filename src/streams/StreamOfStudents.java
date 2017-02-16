@@ -10,11 +10,11 @@ import java.util.function.Predicate;
 
 public class StreamOfStudents {
 
-  private static StudentBuilder student = new StudentBuilder();
-  private static List<Student> students = Arrays.asList(
-      student.withName("Peter").withTotalMarks(3).build(),
-      student.withName("Alex").withTotalMarks(1).build(),
-      student.withName("Stefan").withTotalMarks(2).build()
+  private static final StudentBuilder student = new StudentBuilder();
+  private static final List<Student> students = Arrays.asList(
+      student.withName("Peter").withAge(22).withTotalMarks(3).build(),
+      student.withName("Alex").withAge(23).withTotalMarks(1).build(),
+      student.withName("Stefan").withAge(24).withTotalMarks(2).build()
   );
 
   public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class StreamOfStudents {
         s1.getTotalMarks() > s2.getTotalMarks() ? s1 : s2).ifPresent(System.out::println);
 
     System.out.println("\nAverage total notes:");
-    System.out.println(students.stream().reduce(new Student("", 0), (s1, s2) -> {
+    System.out.println(students.stream().reduce(new Student("", 20,0), (s1, s2) -> {
       s1.increaseTotalMarksWith(s2);
       return s1;
     }).getTotalMarks() / students.size());
@@ -49,6 +49,10 @@ public class StreamOfStudents {
 
     System.out.println("\nStudents printed by a consumer:");
     students.forEach(print());
+
+    System.out.println("\nStudents sum of ages:");
+    int totalOfAges = students.stream().mapToInt((Student p) -> p.getAge()).sum();
+    System.out.println(totalOfAges);
   }
 
   private static Predicate<Student> isGoodInTests() {
