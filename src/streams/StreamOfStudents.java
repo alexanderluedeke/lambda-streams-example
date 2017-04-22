@@ -65,8 +65,7 @@ public class StreamOfStudents {
     System.out.println("\nCompare two lists of students in parallel:");
     AtomicInteger index = new AtomicInteger();
     students.stream().map(student1 -> {
-      final Student student2 = moreStudents.get(index.get());
-      index.getAndIncrement();
+      final Student student2 = moreStudents.get(index.getAndIncrement());
       return student1.getName() + " " + student2.getName();
     }).forEach(System.out::println);
   }
