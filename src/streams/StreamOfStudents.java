@@ -4,6 +4,7 @@ import student.Student;
 import student.StudentBuilder;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -43,8 +44,9 @@ public class StreamOfStudents {
         .ifPresent(System.out::println);
 
     System.out.println("\nStudents sorted by notes:");
+    Comparator<Student> totalMarksComparator = (s1, s2) -> Integer.compare(s1.getTotalMarks(), s2.getTotalMarks());
     students.stream()
-        .sorted((s1, s2) -> Integer.compare(s1.getTotalMarks(), s2.getTotalMarks()))
+        .sorted(totalMarksComparator)
         .forEach(System.out::println);
 
     System.out.println("\nStudents printed by a consumer:");
