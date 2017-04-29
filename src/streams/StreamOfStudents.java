@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class StreamOfStudents {
 
@@ -68,6 +69,10 @@ public class StreamOfStudents {
       final Student student2 = moreStudents.get(index.getAndIncrement());
       return student1.getName() + " " + student2.getName();
     }).forEach(System.out::println);
+
+    System.out.println("\nPrint all students in one line:");
+    List<String> names = students.stream().map(s -> s.getName()).collect(Collectors.toList());
+    System.out.println(String.join(", ", names));
   }
 
   private static Predicate<Student> isGoodInTests() {
