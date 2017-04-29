@@ -32,15 +32,6 @@ public class Student {
         '}';
   }
 
-  // NOT NICE
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setTotalMarks(int totalMarks) {
-    this.totalMarks = totalMarks;
-  }
-
   public void increaseTotalMarksWith(Student s2) {
     totalMarks += s2.totalMarks;
   }
