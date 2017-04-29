@@ -24,9 +24,9 @@ public class StudentBuilder {
 
   public Student build() {
     return new Student(
-        Optional.ofNullable(name).orElse("Unkown"),
-        Optional.ofNullable(age).orElse(18),
-        Optional.ofNullable(totalMarks).orElse(0)
+      Optional.of(name).orElse("Unkown"),
+      Optional.of(age).orElse(18),
+      Optional.of(totalMarks).orElse(0)
     );
   }
 }
